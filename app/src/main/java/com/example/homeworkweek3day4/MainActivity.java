@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity implements
 
     OutputFragment outputFragment;
     FragmentManager fragmentManager;
+    ArrayList<User> users = new ArrayList<>();
+
 
     private static final String INPUT_FRAG_ONE_TAG = "input_frag_one";
     private static final String OUTPUT_FRAG_ONE_TAG = "output_frag_one";
@@ -40,7 +42,12 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onInputSendToMain(User infoPassed) {
-        outputFragment.setInputOutput(infoPassed);//send to output fragment
+        if (infoPassed != null){
+            users.add(infoPassed);
+
+        }
+
+        outputFragment.setInputOutput(users);//send to output fragment
     }
 
 

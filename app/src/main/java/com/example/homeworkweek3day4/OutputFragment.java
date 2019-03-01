@@ -18,8 +18,6 @@ import java.util.ArrayList;
 public class OutputFragment extends Fragment {
 
     MyRecyclerVewAdapter myRecyclerViewAdapter;
-    ArrayList<User> users = new ArrayList<>();
-
     RecyclerView recyclerView;
 
 
@@ -45,15 +43,6 @@ public class OutputFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //Bind RecyclerView
         recyclerView = view.findViewById(R.id.rvRecyclerView);
-
-        //Recycler View needs 2 items
-        //  1. Layout Manager (Can be customized, but we generally us a default
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-
-        //  2.RecyclerView adapter (We write this)
-        myRecyclerViewAdapter = new MyRecyclerVewAdapter(users);
-        recyclerView.setAdapter(myRecyclerViewAdapter);
     }
 
     @Override
@@ -63,11 +52,14 @@ public class OutputFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_output, container, false);
     }
 
-    public void setInputOutput( User userReceivedInfo) {
-        if (userReceivedInfo != null){
-            users.add(userReceivedInfo);
-        }
+    public void setInputOutput( ArrayList<User> userReceived) {
+        //  1. Layout Manager (Can be customized, but we generally us a default
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
 
+        //  2.RecyclerView adapter (We write this)
+        myRecyclerViewAdapter = new MyRecyclerVewAdapter(userReceived);
+        recyclerView.setAdapter(myRecyclerViewAdapter);
 
     }
 
